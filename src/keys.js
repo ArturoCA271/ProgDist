@@ -4,6 +4,6 @@ module.exports = {
         user: 'root',
         password: '12345',
         database: 'cursos',
-        insecureAuth: true,
+        insecureAuth: true
     }
 }
