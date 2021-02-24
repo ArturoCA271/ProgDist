@@ -1,0 +1,29 @@
+<script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+<div class="card-4">
+    <div class="col-md-4 mx-auto">
+        <div class="card-body">
+            <h1>Graficado de errores</h1>
+            <br>
+            <form action="/cursos/graficos" method="POST">
+                <label >Selecciona el tipo de grafico a representar</label>
+                <br>
+                <select class="form-control" name="tipografico" required>
+                    <option value="valor0">Selecciona</option>
+                    <option value="valor1" selected>Grafico 1</option>
+                    <option value="valor2">Grafico 2</option>
+                    <option value="valor3">Grafico 3</option>
+                </select>
+                <br><br>
+                <button class="btn btn-success form-control" name="button" >Generar gráfica</button>
+            </form>   
+            <div id="tester" style="width:90%;height:250px;"></div>
+            <script>
+                var pool = require('../database');
+                let mat = await pool.query('SELECT * FROM alumno');
+                console.log(mat);
+            </script>
+
+        </div>
+    </div>
+</div>
+

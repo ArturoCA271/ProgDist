@@ -32,6 +32,7 @@ app.use('/cursos', require('./routes/cursos'));
 app.use(require('./routes/autenticacion'));
 app.use('/cursos', require('./routes/random'));
 app.use('/cursos', require('./routes/matriculas'));
+app.use('/cursos', require('./routes/Graficado'));
 //public
 app.use(express.static(path.join(__dirname, 'public')));
 

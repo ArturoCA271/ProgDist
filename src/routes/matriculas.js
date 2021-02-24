@@ -12,12 +12,16 @@ const rando = (min, max) => {
 }
 
 router.post('/tablas', async(req, res) => {
+    const { seccion } = req.body;
+    console.log(seccion);
+
     for (i = 0; i < 20; i++) {
         let anio = rando(2013, 2017);
         let sec = rando(1000, 9999);
         let matricula = anio.toString() + sec.toString();
         alumno = {
-            matricula: parseInt(matricula, 10)
+            matricula: parseInt(matricula, 10),
+            seccion: seccion
         }
 
         console.log(matricula);

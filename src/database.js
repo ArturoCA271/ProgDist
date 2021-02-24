@@ -43,7 +43,12 @@ pool.getConnection((err, conenecion) => {
         //pool.query('ALTER TABLE tareas ADD PRIMARY KEY (id_tarea);');
 
         //pool.query('ALTER TABLE tareas MODIFY id_tarea INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;');
-        pool.query('CREATE TABLE IF NOT EXISTS alumno(matricula INT(9) NOT NULL PRIMARY KEY);');
+        pool.query(
+            'CREATE TABLE IF NOT EXISTS alumno(matricula INT(9) NOT NULL PRIMARY KEY,' +
+            'seccion INT(2) NOT NULL);'
+        );
+
+
 
         //pool.query('ALTER TABLE alumno ADD PRIMARY KEY(matricula);');
 

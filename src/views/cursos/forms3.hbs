@@ -3,7 +3,10 @@
         <div class="card-body">
             <h1>Generacion  masiva de matriculas</h1>
             <br>
+            
             <form action="/cursos/tablas" method="POST">
+                Sección a matricular <input type="number" min="0" pattern="\d*" step="1" name="seccion" required >
+                <br><br>
                 <button class="btn btn-success form-control" name="button">Generar matriculas</button>
             </form>
             
