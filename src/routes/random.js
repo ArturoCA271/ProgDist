@@ -48,7 +48,7 @@ async function envioMail(matriculasReprobados) {
         });
         let info = await transporte.sendMail({
             from: '"Cuidado puedes reprobar 👻" <arturo.cardona107@gmail.com>', // sender address
-            to: "jafa001te@gmail.com", // list of receivers
+            to: "bernardoparra@hotmail.com", // list of receivers
             subject: "Tus tareas estan incorrectas", // Subject line
             text: matriculasReprobados, // plain text body
             html: "<b>Tu promedio es de " + matriculasReprobados + "</b>", // html body
@@ -60,8 +60,7 @@ async function envioMail(matriculasReprobados) {
     console.log('Se envio correo');
 }
 
-
-async function insertTask({ almnos }, tema, Tipo_tarea) {
+function insertTask({ almnos }, tema) {
     let Acc_correctivas;
     const materia = 1;
     //definición de errores
@@ -95,10 +94,11 @@ async function insertTask({ almnos }, tema, Tipo_tarea) {
     let Calif;
     let porcentaje = 0.4 * almnos.length;
     let count = 0;
-    //Tipo_tarea = 1;
+    const Tipo_tarea = random(1, 5);
+    console.log(Tipo_tarea);
     switch (Tipo_tarea) {
         case 1:
-
+            console.log('Entro');
             Acc_correctivas = random(1, 5); //resumen
             almnos.forEach(element => {
                 Calif = 0;
@@ -126,8 +126,11 @@ async function insertTask({ almnos }, tema, Tipo_tarea) {
                     errores[4], errores[5], Acc_correctivas);
                 pool.query('INSERT INTO tareas set ?', [tarea]);
                 count++;
+
             });
+            break;
         case 2:
+            console.log('Entro');
             Acc_correctivas = random(1, 5); //Ensayo
             almnos.forEach(element => {
                 Calif = 0;
@@ -156,6 +159,7 @@ async function insertTask({ almnos }, tema, Tipo_tarea) {
 
                 count++;
             });
+            break;
         case 3:
             Acc_correctivas = random(1, 5); //reporte tecnico
             almnos.forEach(element => {
@@ -185,6 +189,7 @@ async function insertTask({ almnos }, tema, Tipo_tarea) {
 
                 count++;
             });
+            break;
         case 4:
             Acc_correctivas = random(1, 5); //mapa conceptual
             almnos.forEach(element => {
@@ -214,6 +219,7 @@ async function insertTask({ almnos }, tema, Tipo_tarea) {
 
                 count++;
             });
+            break;
         case 5:
             Acc_correctivas = random(1, 5); //codigo programa
             almnos.forEach(element => {
@@ -243,28 +249,36 @@ async function insertTask({ almnos }, tema, Tipo_tarea) {
 
                 count++;
             });
+            break;
     }
+
 
 
 
 }
 
 
-async function creaTask() {
-    const almnos = await pool.query('SELECT * FROM alumno');
+async function creaTask1() {
+    const almnos = await pool.query('SELECT * FROM alumno a where a.seccion = 1');
     const valTem = (await pool.query('SELECT max(tema) as tema FROM tareas'));
     let tema;
     valTem.forEach(element => {
         tema = element.tema;
         tema++;
     });
+    console.log(almnos);
+    await insertTask({ almnos }, tema);
+}
+
+async function creaTask2() {
+    const almnos = await pool.query('SELECT * FROM alumno a where a.seccion = 2');
+    const valTem = (await pool.query('SELECT max(tema) as tema FROM tareas'));
+    let tema;
+    valTem.forEach(element => {
+        tema = element.tema;
+    });
     let Tipo_tarea = random(1, 5);
-    await insertTask({ almnos }, tema, Tipo_tarea);
-    //creacion de matriculas reprobadas
-    let matriculasReprobados = "5.3";
-
-
-
+    insertTask({ almnos }, tema, Tipo_tarea);
 }
 
 async function promedios() {
@@ -274,7 +288,6 @@ async function promedios() {
         'FROM tareas t ' +
         'GROUP BY (t.matricula);'
     );
-    //envioMail(10);
     try {
         promedios.forEach(element => {
             if (element.Promedio > 0) {
@@ -293,12 +306,12 @@ async function promedios() {
 
 }
 
-
+contador = 0;
 router.post('/show', async(req, res) => {
 
-    //envioMail("10");
-    await creaTask();
-    await promedios();
+    await creaTask1();
+    await creaTask2();
+    promedios();
     res.redirect('/cursos');
 })
 module.exports = router;

@@ -47,3 +47,39 @@ CREATE TABLE alumno(
 ALTER TABLE alumno
 ADD PRIMARY KEY(matricula);
 
+/*errores en  tareas*/
+
+SELECT t.Tipo_tarea, 
+(t.Err_cometido1  + t.Err_cometido2 + t.Err_cometido3 + 
+t.Err_cometido4 + t.Err_cometido5 + t.Err_cometido6 ) as total
+FROM tareas t
+GROUP BY t.Tipo_tarea;
+
+
+/* Reprobados en tareas */
+SELECT t.tema, 
+sum(if(t.Calif < 6, 1, 0)) as error1
+FROM tareas t
+GROUP BY t.tema;
+
+/* Comparación entre dos secciones */
+/*seccion 1*/
+SELECT t.tema, t.Tipo_tarea, AVG(t.Calif)
+FROM tareas t
+INNER JOIN alumno a ON (t.matricula = a.matricula)
+WHERE a.seccion = 1
+GROUP BY t.tema, t.Tipo_tarea;
+/*seccion 2*/
+
+SELECT t.tema, t.Tipo_tarea, AVG(t.Calif)
+FROM tareas t
+INNER JOIN alumno a ON (t.matricula = a.matricula)
+WHERE a.seccion = 2
+GROUP BY t.tema, t.Tipo_tarea;
+
+
+
+SELECT t.Tipo_tarea, 
+(t.Err_cometido1  + t.Err_cometido2  + t.Err_cometido3 + ) as total
+FROM tareas t
+GROUP BY t.Tipo_tarea;

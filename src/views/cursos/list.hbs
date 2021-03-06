@@ -6,64 +6,64 @@
             <div class="col-md-13">
                 <div class="card text-center">
                     <div class="card-body">
-                        <table class="default">
+                        <table border="1" class="default">
                             
                             <tr>
-                                <th>Matricula</th>
-                                <th>Tema</th>
-                                <th>Materia</th>
-                                <th>Forma de ensenanza</th>
-                                <th>Tipo de tarea</th>
-                                <th>Calificacion</th>
-                                <th>Error 1</th>
-                                <th>Error 2</th>
-                                <th>Error 3</th>
-                                <th>Error 4</th>
-                                <th>Error 5</th>
-                                <th>Error 6</th>
-                                <th>Acciones correctivas</th>
+                                <td bgcolor="blue">Matricula</td>
+                                <td bgcolor="blue">Tema</td>
+                                <td bgcolor="blue">Materia</td>
+                                <td bgcolor="blue">Forma de ensenanza</td>
+                                <td bgcolor="blue">Tipo de tarea</td>
+                                <td bgcolor="blue">Calificacion</td>
+                                <td bgcolor="blue">Error 1</td>
+                                <td bgcolor="blue">Error 2</td>
+                                <td bgcolor="blue">Error 3</td>
+                                <td bgcolor="blue">Error 4</td>
+                                <td bgcolor="blue">Error 5</td>
+                                <td bgcolor="blue">Error 6</td>
+                                <td bgcolor="blue">Acciones correctivas</td>
                             </tr>
                             {{#each cursos}}
                             <tr>
-                                <th>
+                                <td>
                                     {{matricula}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{tema}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Materia}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{forma_ensenanza}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Tipo_tarea}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Calif}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Err_cometido1}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Err_cometido2}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Err_cometido3}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Err_cometido4}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Err_cometido5}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Err_cometido6}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     {{Acc_correctivas}}
-                                </th>
+                                </td>
                                 
                             </tr>
                             {{/each}}

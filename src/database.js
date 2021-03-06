@@ -18,12 +18,6 @@ pool.getConnection((err, conenecion) => {
             'userName VARCHAR(16) NOT NULL, ' +
             'pass VARCHAR(20) NOT NULL);');
 
-        //pool.query('ALTER TABLE users ' +
-        //    'ADD PRIMARY KEY (id);');
-
-        //pool.query('ALTER TABLE users ' +
-        //    'MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;');
-
         pool.query('CREATE TABLE IF NOT EXISTS tareas(' +
             'id_tarea INT(9) NOT NULL AUTO_INCREMENT PRIMARY KEY,' +
             'matricula INT(9) NOT NULL,' +
@@ -40,17 +34,10 @@ pool.getConnection((err, conenecion) => {
             'Err_cometido6 INT(2) NOT NULL,' +
             'Acc_correctivas INT(1) NOT NULL);');
 
-        //pool.query('ALTER TABLE tareas ADD PRIMARY KEY (id_tarea);');
-
-        //pool.query('ALTER TABLE tareas MODIFY id_tarea INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;');
         pool.query(
             'CREATE TABLE IF NOT EXISTS alumno(matricula INT(9) NOT NULL PRIMARY KEY,' +
             'seccion INT(2) NOT NULL);'
         );
-
-
-
-        //pool.query('ALTER TABLE alumno ADD PRIMARY KEY(matricula);');
 
         console.log('Conexion establecida');
         return;

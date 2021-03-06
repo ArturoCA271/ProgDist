@@ -26,6 +26,7 @@ app.use((req, res, next) => {
     next();
 })
 
+
 //routes
 app.use(require('./routes/'));
 app.use('/cursos', require('./routes/cursos'));
@@ -35,7 +36,6 @@ app.use('/cursos', require('./routes/matriculas'));
 app.use('/cursos', require('./routes/Graficado'));
 //public
 app.use(express.static(path.join(__dirname, 'public')));
-
 //iniciar aplicacion
 app.listen(app.get('port'), () => {
     console.log('Servidor iniciado ', app.get('port'));

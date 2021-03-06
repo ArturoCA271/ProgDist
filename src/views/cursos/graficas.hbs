@@ -1,4 +1,4 @@
-<script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <div class="card-4">
     <div class="col-md-4 mx-auto">
         <div class="card-body">
@@ -8,19 +8,39 @@
                 <label >Selecciona el tipo de grafico a representar</label>
                 <br>
                 <select class="form-control" name="tipografico" required>
-                    <option value="valor0">Selecciona</option>
-                    <option value="valor1" selected>Grafico 1</option>
-                    <option value="valor2">Grafico 2</option>
-                    <option value="valor3">Grafico 3</option>
+                    <option value="1" selected>Errores en tareas</option>
+                    <option value="2">Reprobados</option>
+                    <option value="3">Comparació de secciones</option>
                 </select>
                 <br><br>
-                <button class="btn btn-success form-control" name="button" >Generar gráfica</button>
+                <button class="btn btn-success form-control" name="button">Generar gráfica</button>
             </form>   
-            <div id="tester" style="width:90%;height:250px;"></div>
+            <canvas id="myChart"></canvas>
+            
+            
             <script>
-                var pool = require('../database');
-                let mat = await pool.query('SELECT * FROM alumno');
-                console.log(mat);
+                var ejeX = [{{matrices.ejeX}}];
+                var ejeY = [{{matrices.ejeY}}]
+                console.log(ejeX + ", " + ejeY);
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'bar',
+
+                    // The data for our dataset
+                    data: {
+                        labels: ejeX,
+                        datasets: [{
+                            label: 'Graficas',
+                            backgroundColor: 'rgb(0, 0, 0)',
+                            borderColor: 'rgb(0, 0, 0)',
+                            data: ejeY
+                        }]
+                    },
+                    options: {}
+                });
+               
+                
             </script>
 
         </div>
